@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <bean id="weatherService" class="com.yas.service.WeatherServiceImpl"/>
+    <bean id="weatherDto" class="com.yas.dto.WeatherDto"/>
+
+    <service ref="weatherService" interface="com.yas.service.WeatherService"/>
+
+</blueprint>
