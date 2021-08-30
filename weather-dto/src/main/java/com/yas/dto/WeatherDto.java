@@ -31,97 +31,74 @@ public class WeatherDto {
         this.main = main;
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Main {
-        private String temp;
-        private String feels_like;
-        private String temp_min;
-        private String temp_max;
-        private String pressure;
-        private String humidity;
+        private double temp;
+        private double feels_like;
+        private double temp_min;
+        private double temp_max;
+        private double pressure;
+        private double humidity;
 
-        public String getTemp() {
+        public Main() {
+        }
+
+        public Main(double temp, double feels_like, double temp_min, double temp_max, double pressure, double humidity) {
+            this.temp = temp;
+            this.feels_like = feels_like;
+            this.temp_min = temp_min;
+            this.temp_max = temp_max;
+            this.pressure = pressure;
+            this.humidity = humidity;
+        }
+
+        public double getTemp() {
             return temp;
         }
 
-        public void setTemp(String temp) {
+        public void setTemp(double temp) {
             this.temp = temp;
         }
 
-        public String getFeels_like() {
+        public double getFeels_like() {
             return feels_like;
         }
 
-        public void setFeels_like(String feels_like) {
+        public void setFeels_like(double feels_like) {
             this.feels_like = feels_like;
         }
 
-        public String getTemp_min() {
+        public double getTemp_min() {
             return temp_min;
         }
 
-        public void setTemp_min(String temp_min) {
+        public void setTemp_min(double temp_min) {
             this.temp_min = temp_min;
         }
 
-        public String getTemp_max() {
+        public double getTemp_max() {
             return temp_max;
         }
 
-        public void setTemp_max(String temp_max) {
+        public void setTemp_max(double temp_max) {
             this.temp_max = temp_max;
         }
 
-        public String getPressure() {
+        public double getPressure() {
             return pressure;
         }
 
-        public void setPressure(String pressure) {
+        public void setPressure(double pressure) {
             this.pressure = pressure;
         }
 
-        public String getHumidity() {
+        public double getHumidity() {
             return humidity;
         }
 
-        public void setHumidity(String humidity) {
+        public void setHumidity(double humidity) {
             this.humidity = humidity;
         }
     }
 
-    //    private String city;
-//    private String temperature;
-//    private String weatherMain;
-//
-//    public WeatherDto() {
-//    }
-//
-//    public WeatherDto(String city, String temperature, String weatherMain) {
-//        this.city = city;
-//        this.temperature = temperature;
-//        this.weatherMain = weatherMain;
-//    }
-//
-//    public void setCity(String city) {
-//        this.city = city;
-//    }
-//
-//    public void setTemperature(String temperature) {
-//        this.temperature = temperature;
-//    }
-//
-//    public void setWeatherMain(String weatherMain) {
-//        this.weatherMain = weatherMain;
-//    }
-//
-//    public String getCity() {
-//        return city;
-//    }
-//
-//    public String getTemperature() {
-//        return temperature;
-//    }
-//
-//    public String getWeatherMain() {
-//        return weatherMain;
-//    }
 }

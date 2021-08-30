@@ -29,22 +29,6 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.osgi</groupId>-->
-<!--            <artifactId>org.osgi.core</artifactId>-->
-<!--            <version>${osgi.version}</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.fasterxml.jackson.jaxrs</groupId>-->
-<!--            <artifactId>jackson-jaxrs-json-provider</artifactId>-->
-<!--            <version>${jackson.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.cxf</groupId>-->
-<!--            <artifactId>cxf-rt-rs-client</artifactId>-->
-<!--            <version>${cxf.version}</version>-->
-<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -61,7 +45,9 @@
                         <Export-Package>
                             com.yas*;version=${project.version}
                         </Export-Package>
-                        <Import-Package>*</Import-Package>
+                        <Import-Package>
+                            *
+                        </Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
