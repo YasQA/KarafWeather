@@ -53,7 +53,7 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>target/feature/feature.xml</file>
+                                    <file>target/feature/features.xml</file>
                                     <classifier>features</classifier>
                                     <type>xml</type>
                                 </artifact>
