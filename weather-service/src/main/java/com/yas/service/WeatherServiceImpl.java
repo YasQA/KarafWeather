@@ -10,7 +10,7 @@ public class WeatherServiceImpl implements WeatherService {
     private final WebClient webClient;
     private final String appId;
 
-    public WeatherServiceImpl(WebClient webClient, String appId){
+    public WeatherServiceImpl(WebClient webClient, String appId) {
         this.webClient = webClient;
         this.appId = appId;
     }
@@ -35,7 +35,7 @@ public class WeatherServiceImpl implements WeatherService {
         try {
             return webClient.accept(MediaType.APPLICATION_JSON).get(WeatherDto.class);
         } catch (NotFoundException exception) {
-            return new WeatherDto("City Not Found", new WeatherDto.Main());
+            return new WeatherDto("City Not Found", new WeatherDto.MainWeatherData());
         }
     }
 }
