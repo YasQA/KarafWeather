@@ -33,7 +33,6 @@
         <mockito-junit.version>3.12.4</mockito-junit.version>
         <junit.version>5.7.2</junit.version>
         <hecate.version>4.0.0</hecate.version>
-<!--        <cassandra.version>3.9.0</cassandra.version>-->
         <cassandra.driver.version>3.9.0</cassandra.driver.version>
         <metrics.version>3.2.0</metrics.version>
         <netty.version>4.0.33.Final</netty.version>

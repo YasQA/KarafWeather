@@ -1,5 +1,2 @@
-/weather-service/target/
-/weather-dto/target/
-/weather-controller/target/
-/features/target/
+*/target/
 /.gitignore

@@ -13,31 +13,3 @@ public class PojoDaoFactoryFactory {
                 .build();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//public class PojoDaoFactoryFactory {
-//    private final SessionFactory sessionFactory;
-//
-//    public PojoDaoFactoryFactory(SessionFactory sessionFactory) {
-//        this.sessionFactory = sessionFactory;
-//    }
-//
-//    public PojoDaoFactory getPojoDaoFactory() {
-//        Session session = sessionFactory.getSession();
-//        return new DefaultPojoDaoFactoryBuilder(session)
-//                .withListener(new CreateSchemaListener(session))
-//                .build();
-//    }
-//}

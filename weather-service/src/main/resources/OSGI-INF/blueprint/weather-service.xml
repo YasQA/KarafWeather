@@ -7,7 +7,7 @@
         <argument ref="weatherDaoService"/>
     </bean>
 
-<!--    <service ref="weather" interface="com.yas.service.WeatherService"/>-->
+    <service ref="weatherService" interface="com.yas.service.WeatherService"/>
 
     <reference id="weatherDaoService" interface="com.yas.dao.WeatherDao"/>
 
