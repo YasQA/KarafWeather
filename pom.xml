@@ -15,6 +15,8 @@
         <module>weather-service</module>
         <module>weather-dto</module>
         <module>features</module>
+        <module>weather-dao</module>
+        <module>weather-entity</module>
     </modules>
 
     <properties>
@@ -26,10 +28,19 @@
         <jackson.version>2.12.4</jackson.version>
         <blueprint.version>1.0.0</blueprint.version>
         <javax.version>2.1</javax.version>
-
         <lombok-version>1.18.20</lombok-version>
         <mackito.version>1.10.19</mackito.version>
+        <mockito-junit.version>3.12.4</mockito-junit.version>
         <junit.version>5.7.2</junit.version>
+        <hecate.version>4.0.0</hecate.version>
+<!--        <cassandra.version>3.9.0</cassandra.version>-->
+        <cassandra.driver.version>3.9.0</cassandra.driver.version>
+        <metrics.version>3.2.0</metrics.version>
+        <netty.version>4.0.33.Final</netty.version>
+        <guava.version>18.0</guava.version>
+        <metrics.version>3.2.0</metrics.version>
+        <netty.version>4.0.33.Final</netty.version>
+        <commons.lang3.version>3.10</commons.lang3.version>
     </properties>
 
 </project>

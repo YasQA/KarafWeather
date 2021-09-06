@@ -3,12 +3,12 @@ package com.yas.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Data;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WeatherDto {
     @JsonProperty("name")
@@ -17,9 +17,9 @@ public class WeatherDto {
     @JsonProperty("main")
     private MainWeatherData mainWeatherData;
 
+    @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    @Getter
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class MainWeatherData {
         @JsonProperty("temp")

@@ -9,15 +9,10 @@
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 //
 //public class WeatherServiceImplTest {
-//    public static final WeatherDto FAKE_WEATHER =
-//            new WeatherDto("testCityName", new WeatherDto.MainWeatherData(100,101,102,103,104,105));
+//    private final WeatherService weatherService;
 //
-//    private final WebClient webClient;
-//    private final String appId;
-//
-//    public WeatherServiceImplTest(WebClient webClient, String appId) {
-//        this.webClient = webClient;
-//        this.appId = appId;
+//    public WeatherServiceImplTest(WeatherService weatherService) {
+//        this.weatherService = weatherService;
 //    }
 //
 //    @BeforeEach
@@ -30,7 +25,7 @@
 //
 //    @Test
 //    void getWeatherByCityName_correctCityReturned_test() {
-//        WeatherService weatherService = new WeatherServiceImpl(webClient, appId);
+//        //weatherService = new WeatherServiceImpl(webClient, appId);
 //        assertEquals("Boston", weatherService.getWeatherByCity("Boston").getCityName());
 //    }
 //}

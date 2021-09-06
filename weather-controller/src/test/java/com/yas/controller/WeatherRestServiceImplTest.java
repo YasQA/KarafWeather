@@ -4,21 +4,28 @@ import com.yas.dto.WeatherDto;
 import com.yas.service.WeatherService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.exceptions.base.MockitoException;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class WeatherRestServiceImplTest {
     public static final WeatherDto FAKE_WEATHER =
             new WeatherDto("testCityName", new WeatherDto.MainWeatherData(100,101,102,103,104,105));
 
+    @Mock
     private WeatherService weatherService;
     private WeatherRestService weatherRestService;
 
+
     @BeforeEach
     void setUp() {
-        weatherService = Mockito.mock(WeatherService.class);
+        //weatherService = Mockito.mock(WeatherService.class);
         weatherRestService = new WeatherRestServiceImpl(weatherService);
     }
 
@@ -34,12 +41,10 @@ public class WeatherRestServiceImplTest {
     public void shouldReturnCorrectTempData_whenGetWeatherByCity() {
         when(weatherService.getWeatherByCity("testCityName")).thenReturn(FAKE_WEATHER);
 
-        assertEquals(FAKE_WEATHER.getMainWeatherData().getTemperature(),
-                weatherRestService.getByCity("testCityName").getMainWeatherData().getTemperature());
-        assertEquals(FAKE_WEATHER.getMainWeatherData().getHumidity(),
-                weatherRestService.getByCity("testCityName").getMainWeatherData().getHumidity());
-        assertEquals(FAKE_WEATHER.getMainWeatherData().getPressure(),
-                weatherRestService.getByCity("testCityName").getMainWeatherData().getPressure());
+        WeatherDto wDto = weatherRestService.getByCity("testCityName");
+
+        assertEquals(FAKE_WEATHER, wDto);
+
     }
 
     @Test

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <bean id="weatherDao" class="com.yas.dao.WeatherDaoCassandra">
+        <argument ref="pojoDaoFactory"/>
+    </bean>
+
+    <service ref="weatherDao" interface="com.yas.dao.WeatherDao"/>
+
+    <bean id="pojoDaoFactory" class="com.yas.dao.PojoDaoFactoryFactory" factory-method="createFactory">
+        <argument ref="sessionFactory"/>
+    </bean>
+
+    <bean id="sessionFactory" class="com.yas.dao.SessionFactory">
+        <argument type="java.lang.String" value="localhost"/>
+        <argument type="java.lang.Integer" value="9042"/>
+        <argument type="java.lang.String" value="testkeyspace"/>
+    </bean>
+
+</blueprint>
+

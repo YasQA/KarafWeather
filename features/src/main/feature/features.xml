@@ -6,13 +6,27 @@
     <repository>mvn:org.apache.cxf.karaf/apache-cxf/${cxf.version}/xml/features</repository>
     <repository>mvn:org.apache.aries.jax.rs/org.apache.aries.jax.rs.features/1.0.6/xml</repository>
 
+
+    <feature name="weather" version="${project.version}">
+        <feature version="${cxf.version}">cxf-jaxrs</feature>
+<!--        <requirement>osgi.service;effective:=active;filter:=(objectClass=org.osgi.service.http.HttpService)</requirement>-->
+        <bundle>mvn:com.datastax.cassandra/cassandra-driver-core/${cassandra.driver.version}</bundle>
+
+        <feature version="${project.version}">weather-dto</feature>
+        <feature version="${project.version}">weather-entity</feature>
+        <feature version="${project.version}">weather-dao</feature>
+        <feature version="${project.version}">weather-service</feature>
+<!--        <feature version="${project.version}">weather-controller</feature>-->
+    </feature>
+
     <feature name="weather-dto" version="${project.version}">
         <bundle>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson.version}</bundle>
         <bundle>mvn:com.yas/weather-dto/${project.version}</bundle>
     </feature>
 
     <feature name="weather-service" version="${project.version}">
-        <feature version="${project.version}">weather-dto</feature>
+<!--        <feature version="${project.version}">weather-dto</feature>-->
+<!--        <feature version="${project.version}">weather-dao</feature>-->
         <requirement>osgi.service;effective:=active;filter:=(objectClass=org.osgi.service.http.HttpService)</requirement>
         <feature>aries-blueprint</feature>
         <feature version="${cxf.version}">cxf-jaxrs</feature>
@@ -29,6 +43,55 @@
         <feature version="${project.version}">weather-dto</feature>
         <feature version="${project.version}">weather-service</feature>
         <bundle>mvn:com.yas/weather-controller/${project.version}</bundle>
+    </feature>
+
+    <feature name="weather-dao" version="${project.version}">
+        <feature version="${hecate.version}">hecate-core</feature>
+        <feature version="${project.version}">weather-entity</feature>
+        <bundle>mvn:com.yas/weather-dao/${project.version}</bundle>
+    </feature>
+
+    <feature name="weather-entity" version="${project.version}">
+
+        <bundle>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson.version}</bundle>
+        <bundle>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${jackson.version}</bundle>
+        <bundle>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson.version}</bundle>
+        <bundle>mvn:com.fasterxml.jackson.core/jackson-core/${jackson.version}</bundle>
+        <bundle>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson.version}</bundle>
+        <bundle>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}</bundle>
+
+        <bundle>mvn:io.dropwizard.metrics/metrics-core/${metrics.version}</bundle>
+
+        <feature version="${hecate.version}">hecate-pojo</feature>
+        <feature version="${hecate.version}">hecate-annotation</feature>
+        <feature version="${project.version}">weather-dto</feature>
+
+        <bundle>mvn:com.yas/weather-entity/${project.version}</bundle>
+    </feature>
+
+    <feature name="hecate-pojo" version="${hecate.version}">
+        <bundle>mvn:com.google.guava/guava/${guava.version}</bundle>
+        <bundle>mvn:org.apache.commons/commons-lang3/${commons.lang3.version}</bundle>
+        <bundle>mvn:com.datastax.cassandra/cassandra-driver-core/${cassandra.driver.version}</bundle>
+        <feature version="${hecate.version}">hecate-core</feature>
+        <feature version="${hecate.version}">hecate-annotation</feature>
+        <bundle>mvn:com.savoirtech.hecate/hecate-pojo/${hecate.version}</bundle>
+    </feature>
+
+    <feature name="hecate-core" version="${hecate.version}">
+        <bundle>mvn:com.datastax.cassandra/cassandra-driver-core/${cassandra.driver.version}</bundle>
+        <bundle>mvn:io.netty/netty-transport/${netty.version}</bundle>
+        <bundle>mvn:io.netty/netty-buffer/${netty.version}</bundle>
+        <bundle>mvn:io.netty/netty-common/${netty.version}</bundle>
+        <bundle>mvn:io.netty/netty-codec/${netty.version}</bundle>
+        <bundle>mvn:io.netty/netty-handler/${netty.version}</bundle>
+        <bundle>mvn:io.dropwizard.metrics/metrics-core/${metrics.version}</bundle>
+        <bundle>mvn:com.savoirtech.hecate/hecate-core/${hecate.version}</bundle>
+    </feature>
+
+    <feature name="hecate-annotation" version="${hecate.version}">
+        <bundle>mvn:com.datastax.cassandra/cassandra-driver-core/${cassandra.driver.version}</bundle>
+        <bundle>mvn:com.savoirtech.hecate/hecate-annotation/${hecate.version}</bundle>
     </feature>
 
 </features>

@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1630923707449
+Build-Jdk: 1.8.0_302
+Built-By: lebid
+Bundle-ManifestVersion: 2
+Bundle-Name: WeatherDao
+Bundle-SymbolicName: com.yas.weather-dao
+Bundle-Version: 1.0.0
+Created-By: Apache Maven Bundle Plugin
+Export-Package: com.yas.dao;uses:="com.datastax.driver.core,com.savoirte
+ ch.hecate.pojo.dao,com.yas.entity";version="1.0.0"
+Import-Package: com.datastax.driver.core;version="[3.9,4)",com.savoirtec
+ h.hecate.pojo.dao;version="[4.0,5)",com.savoirtech.hecate.pojo.dao.def;
+ version="[4.0,5)",com.savoirtech.hecate.pojo.dao.listener;version="[4.0
+ ,5)",com.yas.entity;version="[1.0,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-4.2.0.201903051501
