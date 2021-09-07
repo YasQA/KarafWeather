@@ -17,7 +17,7 @@ class SessionFactoryTest {
     private static final int PORT = 9042;
     private static final String KEY_SPACE = "testKeyspace";
 
-    Session session;
+    private Session session;
 
     @BeforeAll
     static void setUp() throws IOException, InterruptedException, TTransportException {

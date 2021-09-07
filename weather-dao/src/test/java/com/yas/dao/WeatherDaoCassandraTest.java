@@ -22,11 +22,10 @@ import static org.mockito.Mockito.when;
 class WeatherDaoCassandraTest {
     public static Weather TEST_WEATHER = new Weather("12345678", "testCityName", 100, 101, 102, 103, 104, 105);
 
-    WeatherDao weatherDao;
-    Session session;
+    private Session session;
 
     @Mock
-    SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
 
     @BeforeEach
     void setUp() throws IOException, InterruptedException, TTransportException {
@@ -39,7 +38,7 @@ class WeatherDaoCassandraTest {
     void shouldInsertWeatherDataIntoDB_whenAddCall() {
         when(sessionFactory.getSession()).thenReturn(session);
         PojoDaoFactory pojoDaoFactory = PojoDaoFactoryFactory.createFactory(sessionFactory);
-        weatherDao = new WeatherDaoCassandra(pojoDaoFactory);
+        WeatherDao weatherDao = new WeatherDaoCassandra(pojoDaoFactory);
         weatherDao.add(TEST_WEATHER);
 
         assertEquals(weatherDao.getById("12345678"), TEST_WEATHER);

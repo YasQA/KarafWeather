@@ -25,11 +25,11 @@ public class WeatherServiceImplTest {
                     new WeatherDto.MainWeatherData(100,101,102,103,104,105));
 
     @Mock
-    WebClient webClient;
+    private WebClient webClient;
     @Mock
-    WeatherDao weatherDao;
+    private WeatherDao weatherDao;
 
-    WeatherService weatherService;
+    private WeatherService weatherService;
 
     @BeforeEach
     void setUp() {
