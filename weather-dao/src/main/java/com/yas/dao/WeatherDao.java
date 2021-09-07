@@ -4,4 +4,6 @@ import com.yas.entity.Weather;
 
 public interface WeatherDao {
     void add(Weather weather);
+
+    Weather getById(String id);
 }

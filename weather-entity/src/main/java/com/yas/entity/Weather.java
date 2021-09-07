@@ -2,11 +2,13 @@ package com.yas.entity;
 
 import com.savoirtech.hecate.annotation.PartitionKey;
 import com.yas.dto.WeatherDto;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import java.util.UUID;
 
 @Data
+@AllArgsConstructor
 public class Weather {
     @PartitionKey
     private String id;

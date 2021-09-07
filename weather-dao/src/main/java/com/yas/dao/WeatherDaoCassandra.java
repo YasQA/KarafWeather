@@ -16,5 +16,10 @@ public class WeatherDaoCassandra implements WeatherDao {
         dao.save(weather);
     }
 
+    @Override
+    public Weather getById(String id) {
+        return dao.findByKey(id);
+    }
+
 }
 

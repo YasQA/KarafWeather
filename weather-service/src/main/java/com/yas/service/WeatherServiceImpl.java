@@ -6,7 +6,6 @@ import com.yas.entity.Weather;
 import org.apache.cxf.jaxrs.client.WebClient;
 
 import javax.ws.rs.NotFoundException;
-import javax.ws.rs.core.MediaType;
 
 public class WeatherServiceImpl implements WeatherService {
     private final WebClient webClient;
@@ -23,21 +22,23 @@ public class WeatherServiceImpl implements WeatherService {
     public WeatherDto getWeatherByCity(String city) {
         webClient.reset()
                 .query("q", city)
-                .query("appid", appId);
+                .query("appid", appId)
+                .query("units", "metric");
         return getWeather(webClient);
     }
 
     @Override
     public WeatherDto getWeatherByZipAndCountryCode(String zip, String countryCode) {
         webClient.reset()
-                .query("zip", zip, countryCode)
-                .query("appid", appId);
+                .query("zip", zip + "," + countryCode)
+                .query("appid", appId)
+                .query("units", "metric");
         return getWeather(webClient);
     }
 
     private WeatherDto getWeather(WebClient webClient) {
         try {
-            WeatherDto weatherDto = webClient.accept(MediaType.APPLICATION_JSON).get(WeatherDto.class);
+            WeatherDto weatherDto = webClient.get(WeatherDto.class);
             weatherDao.add(new Weather(weatherDto));
             return weatherDto;
         } catch (NotFoundException exception) {

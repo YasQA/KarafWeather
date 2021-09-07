@@ -6,12 +6,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.exceptions.base.MockitoException;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class WeatherRestServiceImplTest {
@@ -20,12 +20,11 @@ public class WeatherRestServiceImplTest {
 
     @Mock
     private WeatherService weatherService;
-    private WeatherRestService weatherRestService;
 
+    private WeatherRestService weatherRestService;
 
     @BeforeEach
     void setUp() {
-        //weatherService = Mockito.mock(WeatherService.class);
         weatherRestService = new WeatherRestServiceImpl(weatherService);
     }
 
@@ -38,65 +37,25 @@ public class WeatherRestServiceImplTest {
     }
 
     @Test
-    public void shouldReturnCorrectTempData_whenGetWeatherByCity() {
+    public void shouldReturnCorrectTempData_and_PerformCorrectInteractions_whenGetWeatherByCity() {
         when(weatherService.getWeatherByCity("testCityName")).thenReturn(FAKE_WEATHER);
 
-        WeatherDto wDto = weatherRestService.getByCity("testCityName");
+        WeatherDto weatherDto = weatherRestService.getByCity("testCityName");
 
-        assertEquals(FAKE_WEATHER, wDto);
-
-    }
-
-    @Test
-    public void shouldPerformCorrectNumberOfInteractions_whenGetWeatherByCity() {
-        when(weatherService.getWeatherByCity("testCityName")).thenReturn(FAKE_WEATHER);
-        weatherRestService.getByCity("testCityName").getCityName();
-
+        assertEquals(FAKE_WEATHER, weatherDto);
         verify(weatherService, times(1)).getWeatherByCity("testCityName");
-    }
-
-    @Test
-    public void shouldPerformInteractionWithCorrectArgument_whenGetWeatherByCity() {
-        when(weatherService.getWeatherByCity("testCityName")).thenReturn(FAKE_WEATHER);
-        weatherRestService.getByCity("testCityName").getCityName();
-
         verify(weatherService).getWeatherByCity("testCityName");
     }
 
     @Test
-    public void shouldReturnCorrectCityName_whenGetWeatherByZipAndCountryCode() {
-        when(weatherService.getWeatherByZipAndCountryCode("12345", "us")).thenReturn(FAKE_WEATHER);
+    public void shouldReturnCorrectTempData_and_PerformCorrectInteractions_whenGetWeatherByZipAndCountryCode() {
+        when(weatherService.getWeatherByZipAndCountryCode("121212", "ab")).thenReturn(FAKE_WEATHER);
 
-        assertEquals(FAKE_WEATHER.getMainWeatherData().getTemperature(),
-                weatherRestService.getByZipAndCountryCode("12345", "us").getMainWeatherData().getTemperature());
-    }
+        WeatherDto weatherDto = weatherRestService.getByZipAndCountryCode("121212", "ab");
 
-    @Test
-    public void shouldReturnCorrectTempData_whenGetWeatherByZipAndCountryCode() {
-        when(weatherService.getWeatherByZipAndCountryCode("12345", "us")).thenReturn(FAKE_WEATHER);
-
-        assertEquals(FAKE_WEATHER.getMainWeatherData().getTemperature(),
-                weatherRestService.getByZipAndCountryCode("12345", "us").getMainWeatherData().getTemperature());
-        assertEquals(FAKE_WEATHER.getMainWeatherData().getHumidity(),
-                weatherRestService.getByZipAndCountryCode("12345", "us").getMainWeatherData().getHumidity());
-        assertEquals(FAKE_WEATHER.getMainWeatherData().getPressure(),
-                weatherRestService.getByZipAndCountryCode("12345", "us").getMainWeatherData().getPressure());
-    }
-
-    @Test
-    public void shouldPerformCorrectNumberOfInteractions_whenGetWeatherByZipAndCountryCode() {
-        when(weatherService.getWeatherByZipAndCountryCode("12345", "us")).thenReturn(FAKE_WEATHER);
-        weatherRestService.getByZipAndCountryCode("12345", "us").getCityName();
-
-        verify(weatherService, times(1)).getWeatherByZipAndCountryCode("12345", "us");
-    }
-
-    @Test
-    public void shouldPerformInteractionWithCorrectArgument_whenGetWeatherByZipAndCountryCode() {
-        when(weatherService.getWeatherByZipAndCountryCode("12345", "us")).thenReturn(FAKE_WEATHER);
-        weatherRestService.getByZipAndCountryCode("12345", "us").getCityName();
-
-        verify(weatherService).getWeatherByZipAndCountryCode("12345", "us");
+        assertEquals(FAKE_WEATHER, weatherDto);
+        verify(weatherService, times(1)).getWeatherByZipAndCountryCode("121212", "ab");
+        verify(weatherService).getWeatherByZipAndCountryCode("121212", "ab");
     }
 
 }
